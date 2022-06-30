@@ -10,7 +10,7 @@ public class TesterAcceptDefectSteps {
     
     @Given("the tester is on the tester homepage and wants to accept")
         public void the_tester_is_on_the_tester_homepage_and_wants_to_accept() {
-            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
+            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
         }
 
     @When("the tester enters in a pending defects mission number to accept")
@@ -30,6 +30,6 @@ public class TesterAcceptDefectSteps {
 
     @Then("the tester should have updated the pending defects status to accepted")
         public void the_tester_should_have_updated_the_pending_defects_status_to_accepted() {
-            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
+            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
         }
 }

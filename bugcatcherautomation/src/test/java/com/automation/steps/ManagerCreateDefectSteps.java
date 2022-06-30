@@ -11,7 +11,7 @@ public class ManagerCreateDefectSteps {
     // Agnostic Given below
     @Given("the manager is on the manager homepage")
         public void the_manager_is_on_the_manager_homepage() {
-            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/manager-page.html");
+            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/manager-page.html");
         }
     
     // Create defect steps below    
@@ -37,7 +37,7 @@ public class ManagerCreateDefectSteps {
 
     @Then("the manager should have created and assigned a new pending defect")
         public void the_manager_should_have_created_and_assigned_a_new_pending_defect(){
-            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/manager-page.html");
+            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/manager-page.html");
         }
 
 }

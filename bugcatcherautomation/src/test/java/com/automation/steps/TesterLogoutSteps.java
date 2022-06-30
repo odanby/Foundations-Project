@@ -10,7 +10,7 @@ public class TesterLogoutSteps {
     
     @Given("the tester is on their custom homepage")
     public void the_tester_is_on_their_custom_homepage() {
-        TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
+        TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
     } 
     
     // Log out of tester page steps below
@@ -21,6 +21,6 @@ public class TesterLogoutSteps {
     
     @Then("the tester should be logged out and returned back to the login homepage")
         public void the_tester_should_be_logged_out_and_returned_back_to_the_login_homepage() {
-            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/homepage.html");
+            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/homepage.html");
         }
 }

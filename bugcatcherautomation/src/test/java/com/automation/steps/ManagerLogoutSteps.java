@@ -10,7 +10,7 @@ public class ManagerLogoutSteps {
     
     @Given("the manager is on their custom homepage")
     public void the_manager_is_on_their_custom_homepage() {
-        TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/manager-page.html");
+        TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/manager-page.html");
     } 
     
     // Log out of manager page steps below
@@ -21,6 +21,6 @@ public class ManagerLogoutSteps {
     
     @Then("the manager should be logged out and returned back to the login homepage")
         public void the_manager_should_be_logged_out_and_returned_back_to_the_login_homepage() {
-            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/homepage.html");
+            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/homepage.html");
         }
 }

@@ -11,7 +11,7 @@ public class TesterDeclineDefectSteps {
 
     @Given("the tester is on the tester homepage and wants to decline")
     public void the_tester_is_on_the_tester_homepage_and_wants_to_decline() {
-        TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
+        TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
     } 
 
     @When("the tester enters in a pending defects mission number to decline")
@@ -31,7 +31,7 @@ public class TesterDeclineDefectSteps {
 
     @Then("the tester should have updated the pending defects status to declined")
     public void the_tester_should_have_updated_the_pending_defects_status_to_declined() {
-        TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
+        TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/tester-page.html");
     } 
     
 }

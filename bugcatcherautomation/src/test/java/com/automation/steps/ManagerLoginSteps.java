@@ -17,7 +17,7 @@ public class ManagerLoginSteps {
     @Given("the manager is on the login page")
         public void the_manager_is_on_the_login_page() {
             // When telling Selenium to get a local file, you have to add File:// to the start of the URL
-            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/bugcatcherautomation/src/test/resources/webpages/homepage.html");
+            TestRunner.driver.get("File://C:/Users/orian/Revature/Projects/Bug-Catcher/BugCatcherJava/Foundations-Project/bugcatcherautomation/src/test/resources/webpages/homepage.html");
         }
     
     @When("the manager clicks the login button")
