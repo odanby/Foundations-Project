@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tester Page</title>
+    <link rel = "stylesheet" href = "tester-page-style.css">
+</head>
+<body onload = "getDefect()">
+    <div id = "main-bg-body">
+        <h1>Welcome back, Titan!</h1>
+        <table id = "table-one">
+            <thead id = "table-head"></thead>
+            <tbody id = "table-body"></tbody>
+        <div>
+            <table id = "accept-table">
+                <thead>
+                    <tr>
+                        <th id = "accept-header">Accept?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type = "number" id = "mission-number" placeholder = "Enter the mission number"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id = "accept-or-decline">
+                                <option value = "Accepted">Booyah!</option>
+                                <option value = "Declined">Nah, it's no biggie</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id = "accept-or-decline-mission" onclick = "acceptOrDeclineMission()">Update mission status</button>
+        </div>
+        <div id = "bottom-body">
+            <table id = "table-three">
+                <thead id = "table-head-three"></thead>
+                <tbody id = "table-body-three"></tbody>
+            </table>
+            <button id = "update-mission" onclick = "updateDefect()">Update mission outcome</button>
+            <button id = "logout">Get back to pizza and videogames</button> <!-- Robin, Starfire, Beast Boy, Cyborg options -->
+            <!--<button>Get back to meditating</button>  Raven -->
+        </div>
+    </div>
+</body>
+<script>
+    const logOut = document.getElementById("logout");
+    const acceptDeclineButton = document.getElementById("accept-or-decline-mission");
+    const updateMission = document.getElementById("update-mission")
+
+    function confirmLogOut(){
+        let result = confirm("Are you sure everything's taken care of?");
+        if(result === true){
+            alert("Keep up the good work!");
+            window.location.href = "homepage.html";
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    function changeLogoutButtonColor() {
+        logOut.style.backgroundColor = "#8d3e92";
+        logOut.style.color = "black";
+        logOut.style.border = "solid 1px #8d3e92";
+    }
+
+    function revertLogoutButtonColor() {
+        logOut.style.backgroundColor = "black";
+        logOut.style.color = "#8d3e92";
+        logOut.style.border = "solid 1px #8d3e92";
+    }
+
+    logOut.addEventListener("click", confirmLogOut);
+    logOut.addEventListener("mouseover", changeLogoutButtonColor);
+    logOut.addEventListener("mouseleave", revertLogoutButtonColor);
+
+    function changeAcceptDeclineButtonColor() {
+        acceptDeclineButton.style.backgroundColor = "#8d3e92";
+        acceptDeclineButton.style.color = "black";
+        acceptDeclineButton.style.border = "solid 1px #8d3e92";
+    }
+
+    function revertAcceptDeclineButtonColor() {
+        acceptDeclineButton.style.backgroundColor = "black";
+        acceptDeclineButton.style.color = "#8d3e92";
+        acceptDeclineButton.style.border = "solid 1px #8d3e92";
+    }
+
+    acceptDeclineButton.addEventListener("mouseover", changeAcceptDeclineButtonColor);
+    acceptDeclineButton.addEventListener("mouseleave", revertAcceptDeclineButtonColor);
+
+    function changeUpdateButtonColor() {
+        updateMission.style.backgroundColor = "#8d3e92";
+        updateMission.style.color = "black";
+        updateMission.style.border = "solid 1px #8d3e92";
+    }
+
+    function revertUpdateButtonColor() {
+        updateMission.style.backgroundColor = "black";
+        updateMission.style.color = "#8d3e92";
+        updateMission.style.border = "solid 1px #8d3e92";
+    }
+
+    updateMission.addEventListener("mouseover", changeUpdateButtonColor);
+    updateMission.addEventListener("mouseleave", revertUpdateButtonColor);
+
+
+    const tableOne = document.getElementById("table-one");
+    const defectName = document.getElementById("defect-name");
+    const defectDesc = document.getElementById("defect-desc");
+    const defectNameHere = document.getElementById("defect-name-here");
+    const defectDescHere = document.getElementById("defect-desc-here");
+    const defectNumberHere = document.getElementById("defect-number-here")
+    const tableBody = document.getElementById("table-body");
+    const tableHead = document.getElementById("table-head");
+    const missionNumber = document.getElementById("mission-number");
+
+    const tableThree = document.getElementById("table-three");
+    const tableHeadThree = document.getElementById("table-head-three");
+    const tableBodyThree = document.getElementById("table-body-three");
+    const initialUpdate = document.getElementById("accept-or-decline");
+
+
+
+    async function getDefect(){
+
+        let httpResponse = await fetch(`https://bugcatcher.coe.revaturelabs.com/21/defects`)
+        console.log(httpResponse)
+        let responseBody = await httpResponse.json();
+
+        if(httpResponse.status === 200){ 
+            console.log(responseBody);
+  
+                // I need to make a new row for the defect name, defect desc, and defect number
+                    
+                let hdOne = document.createElement("th")
+                    hdOne.innerHTML = 
+                        `
+                        <th>Mission Number</th>    
+                        `
+                    tableHead.appendChild(hdOne);
+
+                let hdTwo = document.createElement("th")
+                    hdTwo.innerHTML = 
+                        `
+                        <th>Lead Titan</th>
+                        `
+                    tableHead.appendChild(hdTwo);
+
+                let hdThree = document.createElement("th")
+                    hdThree.innerHTML = 
+                        `
+                        <th>Villain</th>    
+                        `
+                    tableHead.appendChild(hdThree);
+
+                let hdFour = document.createElement("th")
+                    hdFour.innerHTML = 
+                        `
+                        <th>Crime</th>    
+                        `
+                    tableHead.appendChild(hdFour);
+
+                let hdFive = document.createElement("th")
+                    hdFive.innerHTML = 
+                        `
+                        <th>Status</th>    
+                        `
+                    tableHead.appendChild(hdFive);
+
+                    for(let villainName of responseBody){
+                        console.log(villainName.stepsToReproduce)
+                        let tr = document.createElement("tr")
+                        tr.innerHTML = 
+                        `
+                        <td>${villainName.defectId}</td>
+                        <td>${villainName.assignedTo}</td>
+                        <td>${villainName.stepsToReproduce}</td>
+                        <td>${villainName.desc}</td>
+                        <td>${villainName.status}</td>
+                        `
+                        tableBody.appendChild(tr);
+                    }
+        } else {
+            alert("Gizmo's hacked the system-- no missions could be found!")
+        }
+    };
+
+    async function acceptOrDeclineMission(){
+
+        let updateInfo = {
+            status: initialUpdate.value
+        };
+
+        let updateJSON = JSON.stringify(updateInfo);
+
+        let config = {
+            method: "PATCH",
+            headers: {'Content-Type':"application/json"}, 
+            body: updateJSON
+        };
+
+        let httpResponse = await fetch(`https://bugcatcher.coe.revaturelabs.com/21/defects/${missionNumber.value}`, config)
+        console.log(httpResponse.status)
+        
+        if(httpResponse.status === 204){        
+            if(initialUpdate.value === "Accepted"){
+                let additionalTh = document.createElement("th")
+                additionalTh.innerHTML =
+                `
+                <th id = "bug-outcome-header">Outcome</th>
+                `
+                tableHeadThree.appendChild(additionalTh);
+                let additionalTr = document.createElement("td")
+                additionalTr.innerHTML =
+                `
+                <td>
+                    <select id = "bug-outcome">
+                        <option value = "Rejected">False alarm</option>
+                        <option value = "Fixed">Butts = kicked</option>
+                        <option value = "Shelved">Call the Titans East</option>
+                    </select>
+                </td>
+                `
+                tableBodyThree.appendChild(additionalTr);
+                secondaryUpdate = document.getElementById("bug-outcome")
+
+                alert("Please update the mayor with the mission outcome!")
+            } else if(initialUpdate.value === "Declined"){
+                let result = confirm("The mayor will deal with it on his own.");
+                if(result === true){
+                    window.location.href = "tester-page.html";
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                alert("Status not pulling up as accepted or declined, may need to change === to == or =")
+            }
+        } else {
+            alert("http Response is not 204")
+        }
+    }
+
+    async function updateDefect(){
+        let updateInfo = {
+            status: secondaryUpdate.value
+        };
+
+        let updateJSON = JSON.stringify(updateInfo);
+
+        let config = {
+            method: "PATCH",
+            headers: {'Content-Type':"application/json"}, 
+            body: updateJSON
+        };
+
+        let httpResponse = await fetch(`https://bugcatcher.coe.revaturelabs.com/21/defects/${missionNumber.value}`, config)
+        console.log(httpResponse.status)
+
+        if(httpResponse.status === 204){
+            if(secondaryUpdate.value === "Rejected"){
+                let result = confirm("Back to TV...");
+                if(result === true){
+                    window.location.href = "tester-page.html";
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if(secondaryUpdate.value === "Fixed"){
+                let result = confirm("You saved the day!");
+                if(result === true){
+                    window.location.href = "tester-page.html";
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if(secondaryUpdate.value === "Shelved"){
+                let result = confirm("Calling back-up!");
+                if(result === true){
+                    window.location.href = "tester-page.html";
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+
+</script>
+</html>

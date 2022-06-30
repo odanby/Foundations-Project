@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mayor of Jump City Homepage</title>
+    <link rel = "stylesheet" href = "manager-page-style.css">
+</head>
+<body>
+    <div id = "main-body">
+        <h1>Welcome back, Mr. Mayor!</h1>
+        <h2><span>Is the city about to be destroyed again today by a superhuman being?
+            <br>No worries, just send an alert to the Teen Titans!</span></h2>
+        <h3>Villain</h3>
+        <input type = "text" id = "defect-name" placeholder = "so, who has an inflated ego today?">
+        <h3>Crime</h3>
+        <input type = "text" id = "defect-desc" placeholder = "what are they doing this time?">
+        <h3 id = "which-titan"><span>Which Titan should take the lead?</span></h3>
+        <select id = "defect-select">
+            <option value = "Robin">Robin</option>
+            <option value = "Starfire">Starfire</option>
+            <option value = "Raven">Raven</option>
+            <option value = "BeastBoy">Beast Boy</option>
+            <option value = "Cyborg">Cyborg</option>
+        </select>
+    </div>
+    <div id = "body-button">
+        <button id = "confirm-assignment" onclick = "createDefect()">Notify the Teen Titans</button>
+        <h4>They should be on their way soon. <br> Feel free to retreat into the abyss of your existence.</h4>
+        <button id = "logout">Logout</button>
+    </div>
+</body>
+<script>
+    const logOut = document.getElementById("logout");
+
+    function revertButtonColor() {
+        logOut.style.color = "#f0f2ff";
+        logOut.style.backgroundColor = "#8d3e92";
+        logOut.style.border = "solid 1px #f0f2ff";
+    }
+
+    function changeButtonColor() {
+        logOut.style.color = "#8d3e92";
+        logOut.style.backgroundColor = "#f0f2ff";
+        logOut.style.border = "solid 1px #8d3e92";
+    }
+
+    logOut.addEventListener("mouseover", changeButtonColor);
+    logOut.addEventListener("mouseleave", revertButtonColor);
+
+    const confirmAssignmentButton = document.getElementById("confirm-assignment");
+
+    function revertAssignButtonColor() {
+        confirmAssignmentButton.style.color = "#f0f2ff";
+        confirmAssignmentButton.style.backgroundColor = "#8d3e92";
+        confirmAssignmentButton.style.border = "solid 1px #f0f2ff";
+    }
+
+    function changeAssignButtonColor() {
+        confirmAssignmentButton.style.color = "#8d3e92";
+        confirmAssignmentButton.style.backgroundColor = "#f0f2ff";
+        confirmAssignmentButton.style.border = "solid 1px #8d3e92";
+    }
+
+    confirmAssignmentButton.addEventListener("mouseover", changeAssignButtonColor);
+    confirmAssignmentButton.addEventListener("mouseleave", revertAssignButtonColor);
+
+    function confirmLogOut(){
+        let result = confirm("Are you sure everything's taken care of?");
+        if(result === true){
+            alert("Thanks for nothing!");
+            window.location.href = "homepage.html";
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+   logOut.addEventListener("click", confirmLogOut);
+
+   async function createDefect(){
+
+    let defectInfo = {
+        defectId: 0,
+        assignedTo: document.getElementById("defect-select").value,
+        dateReported: 0,
+        status: "Pending",
+        desc: document.getElementById("defect-desc").value, // desc means description
+        stepsToReproduce: document.getElementById("defect-name").value, // i don't think i can add on a name variable so im gonna use steps to reproduce instead
+        severity: "Low",
+        priority: "Low"
+    };
+
+    let createDefectJSON = JSON.stringify(defectInfo);
+
+    let config = {
+        method: "POST",
+        headers: {'Content-Type': "application/json"},
+        body: createDefectJSON
+    }
+
+    let httpResponse = await fetch("https://bugcatcher.coe.revaturelabs.com/21/defects", config);
+
+    if(httpResponse.status === 201){
+        let responseBody = await httpResponse.json();
+
+        if(responseBody.assignedTo === "Robin"){
+            alert("Robin is on the mission!")
+        } else if(responseBody.assignedTo === "Starfire"){
+            alert("Starfire is on the mission!")
+        } else if(responseBody.assignedTo === "Raven"){
+            alert("Raven is on the mission!")
+        } else if(responseBody.assignedTo === "BeastBoy"){
+            alert("Beast Boy is on the mission!")
+        } else if(responseBody.assignedTo === "Cyborg"){
+            alert("Cyborg is on the mission!")
+        } else {
+            alert("No one has been assigned this mission!")
+        }
+    } else {
+        let responseBody = await httpResponse.json();
+        alert(responseBody.detail);
+    }
+   }
+
+</script>
+</html>

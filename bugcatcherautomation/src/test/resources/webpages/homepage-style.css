@@ -1,0 +1,110 @@
+body {
+    background-image: url("titan-tower-night.jpg");
+    background-size: 100%;
+}
+
+h1 {
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    background-image: linear-gradient(#b4c4f8,#6b6be0, #36368a);
+    -webkit-background-clip: text;
+    -moz-background-clip: text ;
+    background-clip: text;
+    color: transparent;
+    font-size: 56px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 80px;
+}
+
+h2 {
+    color: #f5f540;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 32px;
+}
+
+p {
+    color: #161b4d;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: lowercase;
+    font-size: 16px;
+}
+
+p span {
+    background-color: #f5f540;
+}
+
+#main-body {
+    display: block;
+    align-items: center;
+    text-align: center;
+}
+
+#body-button {
+    display: block;
+    align-items: center;
+    text-align: center;
+}
+
+
+#username {
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+    color: #ffffff;
+    height: 35px;
+    width: 200px;
+    font-size:large;
+    padding: 2px 40px 2px 40px;
+    vertical-align: middle;
+    border: solid 1px #f0f2ff;
+    background-color: #404093;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+label {
+    color: #cfd1ea;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#password {
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+    color: #ffffff;
+    height: 35px;
+    width: 200px;
+    font-size:large;
+    padding: 2px 40px 2px 40px;
+    vertical-align: middle;
+    border: solid 1px #f0f2ff;
+    background-color: #404093;
+    outline: none;
+    margin-bottom: 50px;
+}
+
+::placeholder {
+    color: rgb(202, 203, 239);
+}
+
+
+#login-button {
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+    height: 35px;
+    width: 150px;
+    font-size:medium;
+    padding: 2px 10px 2px 10px;
+    vertical-align: middle;
+    outline: none;
+    color: #404093;
+    background-color: #f0f2ff;
+    border: solid 1px #404093;
+    margin-bottom: 20px;
+}
+
+#titans-communicator {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 125px;
+    width: 125px;
+}

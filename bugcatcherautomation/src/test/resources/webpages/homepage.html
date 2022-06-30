@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Titans Tower Communications Center</title>
+    <link rel = "stylesheet" href = "homepage-style.css">
+</head>
+<body>
+    <h1>Titans Communications Tower</h1>
+    <div id = "main-body">
+        <img id = "titans-communicator" src = "teen-titans-communicator.png" alt = "teen-titans-communicator">
+        <h2>Please Log In!</h2>
+        <input type = "text" id = "username" placeholder = "username">
+        <br>
+        <input type = "password" id = "password" placeholder = "password">
+        <p for = "password"><span>note to Beast Boy: check with Raven for your newest password</span></p>
+    </div>
+    <div id = "body-button">
+        <button id = "login-button" onclick = "login()">login!</button>
+    </div>
+</body>
+<script>
+    const loginButtonColor = document.getElementById("login-button");
+
+    function revertButtonColor() {
+        loginButtonColor.style.color = "#404093";
+        loginButtonColor.style.backgroundColor = "#f0f2ff";
+        loginButtonColor.style.border = "solid 1px #404093";
+    }
+
+    function changeButtonColor() {
+        loginButtonColor.style.color = "white";
+        loginButtonColor.style.backgroundColor = "#404093";
+        loginButtonColor.style.border = "solid 1px #f0f2ff";
+    }
+
+    loginButtonColor.addEventListener("mouseover", changeButtonColor);
+    loginButtonColor.addEventListener("mouseleave", revertButtonColor);
+
+    async function login(){
+        // to let my api validate login information, I need to attach the username and password to the
+        // http request
+        let loginInfo = {
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        };
+
+        // now that I have the actual login information, I need to convert it into a JSON
+        let loginJSON = JSON.stringify(loginInfo);
+
+        // now I can set up my HTTP request configurations
+        let config = {
+            method: "PATCH", // method is a reference to the kind of request you are making (the verb): GET is the default
+            headers: {'Content-Type':"application/json"}, // some APIs will return an error message without this value included
+            body: loginJSON // stringify converts a JS object into a JSON
+        };
+
+        let httpResponse = await fetch("https://bugcatcher.coe.revaturelabs.com/21/login", config) // make sure to enter the url assigned to you
+
+        if(httpResponse.status === 200){
+            let responseBody = await httpResponse.json();   // remember, json() returns a promise, so we use await to get the data we want out of it
+
+            if(responseBody.role === "Tester"){
+                window.location.href = "tester-page.html"
+            } else if(responseBody.role === "Manager"){
+                window.location.href = "manager-page.html"
+            } else {
+                alert("User has not been assigned a role.")
+            }
+        } else {
+            let responseBody = await httpResponse.json();
+            alert(responseBody.detail);
+        }
+       
+    }
+
+</script>
+</html>
